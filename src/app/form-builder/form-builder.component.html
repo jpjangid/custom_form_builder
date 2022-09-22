@@ -1,0 +1,226 @@
+<!-- <section class="builder_section">
+    <div class="container">
+        <div class="row m-0 section_row">
+            <div class="col-lg-3 col-md-3 col-12 left_section py-3">
+                <h3 class="text-center mb-3 border-bottom pb-3">Controls</h3>
+                <div class="layout_section">
+                    <div>
+                        <input type="radio" name="radio" class="form-check-input"> <span class="mx-2">1 Col</span>
+                    </div>
+                    <div>
+                        <input type="radio" name="radio" class="form-check-input"> <span class="mx-2">2 Col</span>
+                    </div>
+                    <div>
+                        <input type="radio" name="radio" class="form-check-input"> <span class="mx-2">3 Col</span>
+                    </div>
+                </div>
+                <div class="button_section">
+                    <div class="control_section" dragula="COPYABLE" [(dragulaModel)]="customJson.controls" id="left">
+                        <div class="button-col" *ngFor="let item of customJson.controls">
+                            <p class="m-0 btn">{{item.label}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-9 col-12 right_section py-3">
+                <h3 class="text-center mb-3 border-bottom pb-3">Preview</h3>
+                <div class="field_section">
+                    <div class="control_section m-5" dragula="COPYABLE" [(dragulaModel)]="buttonFields.controls"
+                        id="right">
+                        <div class="button-col" *ngFor="let item of buttonFields.controls;index as index">
+                            <div class="btn_section">
+                                <i class="fas fa-file-signature mx-3" (click)="openConfigForm(item,index)"></i>
+                                <i class="fas fa-times" (click)="deleteField(index)"></i>
+                            </div>
+                            <ng-container *ngIf="item.id=='text'">
+                                <app-input-text [inputTextDetail]="item"></app-input-text>
+                            </ng-container>
+                            <ng-container *ngIf="item.id=='area'">
+                                <app-input-area [inputAreaDetail]="item"></app-input-area>
+                            </ng-container>
+                            <ng-container *ngIf="item.id=='email'">
+                                <app-input-email [inputEmailDetail]="item"></app-input-email>
+                            </ng-container>
+                            <ng-container *ngIf="item.id=='password'">
+                                <app-input-password [inputPasswordDetail]="item"></app-input-password>
+                            </ng-container>
+                            <ng-container *ngIf="item.id=='checkbox'">
+                                <app-input-checkbox [inputCheckboxDetail]="item"></app-input-checkbox>
+                            </ng-container>
+                            <ng-container *ngIf="item.id=='radio'">
+                                <app-input-radio [inputRadioDetail]="item"></app-input-radio>
+                            </ng-container>
+                            <ng-container *ngIf="item.id=='date'">
+                                <app-input-datepicker [inputDateDetail]="item"></app-input-datepicker>
+                            </ng-container>
+                            <ng-container *ngIf="item.id=='button'">
+                                <app-input-button [inputButtonDetail]="item"></app-input-button>
+                            </ng-container>
+                        </div>
+                        <div class="drag_content" *ngIf="!(buttonFields.controls?.length>0)">
+                            <p class="m-0">
+                                Drag and Drop a form component
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="save_form my-4" *ngIf="(buttonFields.controls?.length>0)">
+            <p class="btn btn-success m-0 px-5" (click)="getFormJsonData()">Save Form
+            </p>
+        </div>
+    </div>
+</section> -->
+<!-- {{buttonFields | json}} -->
+<!-- <ng-container *ngIf="buttonFields.controls?.length>0 && formValueCheck">
+    <app-form-renderer [jsonFormData]="buttonFields"></app-form-renderer>
+</ng-container> -->
+
+<div class="chat-content-area">
+    <div class="sidebar-left">
+        <div class="sidebar">
+            <h3 class="text-center mb-3 border-bottom pb-3 section_heading">Controls</h3>
+            <div class="button_section">
+                <div class="control_section" dragula="COPYABLE" [(dragulaModel)]="customJson.controls" id="left">
+                    <div class="button-col" *ngFor="let item of customJson.controls;index as index">
+                        <ng-container *ngIf="item.label != 'Submit'">
+                            <ng-container *ngFor="let icon of icons;index as iconIndex">
+                                <p class="m-0 btn" *ngIf="iconIndex==index"><i class="{{icon.class}} mx-2"></i>{{item.label}}</p>
+                            </ng-container>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+            <div class="layout_section">
+                <h3 class="text-center mb-3 border-bottom py-3 section_heading">Layouts</h3>
+                <div class="redioDiv">
+                    <div>
+                        <input type="radio" name="radio" class="form-check-input" value="col-lg-12" [checked]="(buttonFields?.controls[0]?.layout == 'col-lg-12')" (click)="getLayoutValue(layout1)" #layout1> <span class="mx-2">1 Column</span>
+                    </div>
+                    <div>
+                        <input type="radio" name="radio" class="form-check-input" value="col-lg-6" [checked]="(buttonFields?.controls[0]?.layout == 'col-lg-6')" (click)="getLayoutValue(layout2)" #layout2> <span class="mx-2">2 Column</span>
+                    </div>
+                    <div>
+                        <input type="radio" name="radio" class="form-check-input" value="col-lg-4" [checked]="(buttonFields?.controls[0]?.layout == 'col-lg-4')" (click)="getLayoutValue(layout3)" #layout3> <span class="mx-2">3 Column</span>
+                    </div>
+                </div>
+            </div>
+            <div class="payment_section">
+                <h3 class="text-center mb-3 border-bottom py-3 section_heading">Payment Option</h3>
+                <div class="checkboxDiv">
+                    <input type="checkbox" name="checkbox" class="form-check-input" [(ngModel)]="paymentValue"> <span class="mx-2">Payment Required<i class="fas fa-file-signature mx-1" (click)="openModalOnPayment()"></i></span>
+                </div>
+            </div>
+            <!-- <div class="layout_section input-group justify-content-center">
+                <span class="input-group-text">Col-12</span>
+                <span class="input-group-text">Col-6</span>
+                <span class="input-group-text">Col-4</span>
+            </div> -->
+        </div>
+    </div>
+    <div class="content-right">
+        <div class="chat-area">
+            <div class="chat-list-wrapper">
+                <div class="chat-list">
+                    <div class="chat-list-header">
+                        <h3 class="text-center mb-3 border-bottom pb-3 section_heading">Preview</h3>
+                        <div class="field_section">
+                            <div class="control_section p-5" dragula="COPYABLE" [(dragulaModel)]="buttonFields.controls" id="right">
+                                <div class="button-col" *ngFor="let item of buttonFields.controls;index as index">
+                                    <div class="btn_section">
+                                        <i class="fas fa-file-signature mx-3" (click)="openConfigForm(item,index)"></i>
+                                        <i class="fas fa-times" (click)="deleteField(index)"></i>
+                                    </div>
+                                    <ng-container *ngIf="item.id=='text'">
+                                        <app-input-text [inputTextDetail]="item"></app-input-text>
+                                    </ng-container>
+                                    <ng-container *ngIf="item.id=='area'">
+                                        <app-input-area [inputAreaDetail]="item"></app-input-area>
+                                    </ng-container>
+                                    <ng-container *ngIf="item.id=='email'">
+                                        <app-input-email [inputEmailDetail]="item"></app-input-email>
+                                    </ng-container>
+                                    <ng-container *ngIf="item.id=='password'">
+                                        <app-input-password [inputPasswordDetail]="item"></app-input-password>
+                                    </ng-container>
+                                    <ng-container *ngIf="item.id=='checkbox'">
+                                        <app-input-checkbox [inputCheckboxDetail]="item"></app-input-checkbox>
+                                    </ng-container>
+                                    <ng-container *ngIf="item.id=='radio'">
+                                        <app-input-radio [inputRadioDetail]="item"></app-input-radio>
+                                    </ng-container>
+                                    <ng-container *ngIf="item.id=='date'">
+                                        <app-input-datepicker [inputDateDetail]="item"></app-input-datepicker>
+                                    </ng-container>
+                                    <ng-container *ngIf="item.id=='button'">
+                                        <app-input-button [inputButtonDetail]="item"></app-input-button>
+                                    </ng-container>
+                                </div>
+                                <div class="drag_content" *ngIf="!(buttonFields.controls?.length>1)">
+                                    <p class="m-0">
+                                        Drag and Drop a form component
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-list-footer">
+                        <div class="save_form py-4" *ngIf="(buttonFields.controls?.length>0)">
+                            <button (click)="getFormJsonData()" type="submit" class="send-btn d-inline-block"><i class="fa fa-paper-plane mx-1"></i>Save
+                                Form</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-container *ngIf="buttonFields.controls?.length>0 && formValueCheck">
+    <div class="container">
+        <app-form-renderer [jsonFormData]="buttonFields"></app-form-renderer>
+    </div>
+</ng-container>
+
+<!-- for further use -->
+<!-- <div class="control_section m-5 section_row row p-3" dragula="COPYABLE" [(dragulaModel)]="buttonFields.controls"
+    id="right">
+    <div class="col-md-6" *ngFor="let item of buttonFields.controls;index as index">
+        <div class="button-col">
+            <div class="btn_section">
+                <i class="fas fa-file-signature mx-3" (click)="openConfigForm(item,index)"></i>
+                <i class="fas fa-times" (click)="deleteField(index)"></i>
+            </div>
+            <ng-container *ngIf="item.id=='text'">
+                <app-input-text [inputTextDetail]="item"></app-input-text>
+            </ng-container>
+            <ng-container *ngIf="item.id=='area'">
+                <app-input-area [inputAreaDetail]="item"></app-input-area>
+            </ng-container>
+            <ng-container *ngIf="item.id=='email'">
+                <app-input-email [inputEmailDetail]="item"></app-input-email>
+            </ng-container>
+            <ng-container *ngIf="item.id=='password'">
+                <app-input-password [inputPasswordDetail]="item"></app-input-password>
+            </ng-container>
+            <ng-container *ngIf="item.id=='checkbox'">
+                <app-input-checkbox [inputCheckboxDetail]="item"></app-input-checkbox>
+            </ng-container>
+            <ng-container *ngIf="item.id=='radio'">
+                <app-input-radio [inputRadioDetail]="item"></app-input-radio>
+            </ng-container>
+            <ng-container *ngIf="item.id=='button'">
+                <app-input-button [inputButtonDetail]="item"></app-input-button>
+            </ng-container>
+        </div>
+        <div class="drag_content" *ngIf="!(buttonFields.controls?.length>0)">
+            <p class="m-0">
+                Drag and Drop a form component
+            </p>
+        </div>
+        <div class="save_form my-4" *ngIf="(buttonFields.controls?.length>0)">
+            <p class="btn btn-success m-0" (click)="formValueCheck=!formValueCheck">Save Form
+            </p>
+        </div>
+    </div>
+</div> -->

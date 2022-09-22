@@ -1,0 +1,41 @@
+<div class="modal_section">
+    <form #areaForm="ngForm" (ngSubmit)="submitDetail(areaForm)">
+        <ng-container>
+            <div class="row m-0">
+                <div class="col-12 mb-2">
+                    <label for="name">Enter Label Name : </label>
+                    <input type="text" class="form-control" [(ngModel)]="areaDetail.label" name="label">
+                </div> 
+                <div class="col-12 mb-2" *ngIf="areaDetail.placeholder">
+                    <label for="placeholder">Enter Placeholder Name : </label>
+                    <input type="text" class="form-control" [(ngModel)]="areaDetail.placeholder" name="placeholder">
+                </div>
+                <div *ngIf="areaDetail.data">
+                    <div class="col-12 mb-2" *ngFor="let item of areaDetail.data; index as index">
+                        <label for="placeholder">Enter {{areaDetail.type | titlecase}} label {{index+1}} : </label>
+                        <input type="text" class="form-control" [(ngModel)]="item.label" name={{item.label+index}}>
+                    </div>
+                    <div class="add_btn">
+                        <div class="icon_btn">
+                            <span>Add Option</span>
+                            <i class="fa fa-plus" (click)="addOption()"></i>
+                        </div>
+                        <div class="icon_btn">
+                            <span>Remove Option</span>
+                            <i class="fa fa-minus" (click)="removeOption()"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 mb-2 d-flex align-items-center">
+                    <input type="checkbox" [(ngModel)]="areaDetail.required" name="validation">
+                    <label for="placeholder" class="mx-2">Required</label>
+                </div>
+            </div>
+        </ng-container>
+        <div class="row m-0">
+            <div class="col submit_btn">
+                <input type="submit" class="btn btn-success" label="Save Detail">
+            </div>
+        </div>
+    </form>
+</div>

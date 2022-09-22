@@ -1,0 +1,85 @@
+<div class="modal_section">
+    <form #areaForm="ngForm" (ngSubmit)="submitDetail(areaForm)">
+        <ng-container *ngIf="!paymentOption">
+            <div class="row m-0">
+                <div class="col-12 mb-2">
+                    <label for="name">Enter Label Name : </label>
+                    <input type="text" class="form-control" [(ngModel)]="formDetail.label" name="label">
+                </div>
+                <div class="col-12 mb-2" *ngIf="formDetail.placeholder">
+                    <label for="placeholder">Enter Placeholder Name : </label>
+                    <input type="text" class="form-control" [(ngModel)]="formDetail.placeholder" name="placeholder">
+                </div>
+                <div *ngIf="formDetail.data">
+                    <div class="col-12 mb-2" *ngFor="let item of formDetail.data; index as index">
+                        <label for="placeholder">Enter {{formDetail.type | titlecase}} label {{index+1}} : </label>
+                        <input type="text" class="form-control" [(ngModel)]="item.label" name={{item.label+index}}>
+                    </div>
+                    <div class="add_btn">
+                        <div class="icon_btn">
+                            <span>Add Option</span>
+                            <i class="fa fa-plus" (click)="addOption()"></i>
+                        </div>
+                        <div class="icon_btn">
+                            <span>Remove Option</span>
+                            <i class="fa fa-minus" (click)="removeOption()"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 mb-2 d-flex align-items-center">
+                    <input type="checkbox" [(ngModel)]="formDetail.required" name="validation">
+                    <label for="placeholder" class="mx-2">Required</label>
+                </div>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="paymentOption">
+            <div class="row m-0 payment_section">
+                <div class="head_section">
+                    <h6>Payment Conditions</h6>
+                    <div class="action_btn">
+                        <p class="mx-2" (click)="actionButtonForPayment('add')">Add</p>
+                        <p (click)="actionButtonForPayment('remove')">Remove</p>
+                    </div>
+                </div>
+            </div>
+            <div class="option_table">
+                <table class="table table-responsive">
+                    <thead>
+                        <tr>
+                            <th style="white-space:nowrap;">S. No.</th>
+                            <th>Fields</th>
+                            <th>Has Value</th>
+                            <th>Amount</th>
+                            <!-- <th>Action</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of paymentOption.paymentDetailObject;index as index">
+                            <td style="text-align: center;">{{index+1}}</td>
+                            <td>
+                                <select name="{{item.selectedCategory+index}}" class="form-select">
+                                    <option [selected]="true" [disabled]="true">Select Category</option>
+                                    <ng-container *ngFor="let items of paymentOption.controls">
+                                        <option>{{items.label}}</option>
+                                    </ng-container>
+                                </select>
+                            </td>
+                            <td>
+                                <input class="form-control" type="text" name="type">
+                            </td>
+                            <td>
+                                <input class="form-control" type="text" name="amount">
+                            </td>
+                            <!-- <td style="text-align: center;"><i class="far fa-trash"></i></td> -->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </ng-container>
+        <div class="row m-0">
+            <div class="col submit_btn">
+                <input type="submit" class="btn btn-success" label="Save Detail">
+            </div>
+        </div>
+    </form>
+</div>

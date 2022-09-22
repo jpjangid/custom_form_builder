@@ -1,0 +1,67 @@
+<form [formGroup]="myForm" (ngSubmit)="submitData()" #rendererForm="ngForm">
+    <div class="container">
+        <div class="row m-0 w-100">
+            <ng-container *ngFor="let control of jsonFormData?.controls">
+                <div class="{{control.layout}} col-12">
+                    <label for="" *ngIf="control.name != 'button'" class="my-2">{{control.label}}</label>
+                    <ng-container *ngIf="['text','password','email','number','date'].includes(control.type)">
+                        <input [type]="control.type" [email]="control.type == 'email'" [placeholder]="control.placeholder" [formControlName]="control.name" [value]="control.value" class="form-control" [required]="control.required">
+                        <div *ngIf="rendererForm.submitted && myForm.controls[control.name]?.invalid || myForm.controls[control.name].touched && myForm.controls[control.name]?.invalid" class="alert alert-danger">
+                            <div *ngIf="control.required">
+                                {{control.label}} is required
+                            </div>
+                            <div *ngIf="control.type == 'email'">
+                                <div *ngIf="myForm.controls[control.name]?.invalid">
+                                    {{control.label}} is not valid
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="control.type == 'radio'">
+                        <ng-container *ngFor="let option of control.data">
+                            <label class="d-flex align-items-center"><input class="price-input mx-2" type="radio"
+                                    name="{{control.name}}" [formControlName]="control.name"
+                                    [placeholder]="control.placeholder" [value]="option.label"
+                                    [required]="control.required">
+                                <span>{{option.label}}</span>
+                            </label>
+                        </ng-container>
+                        <div *ngIf="rendererForm.submitted && myForm.controls[control.name]?.invalid || myForm.controls[control.name].touched && myForm.controls[control.name]?.invalid" class="alert alert-danger">
+                            <div *ngIf="control.required">
+                                {{control.label}} is required
+                            </div>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="control.type == 'checkbox'">
+                        <ng-container *ngFor="let option of control.data;index as index">
+                            <br><input class="mx-2" [type]="control.type" [placeholder]="control.placeholder" [id]="control.name+index" [formControlName]="control.name" [value]="control.value" [required]="control.required">
+                            <span>{{option.label}}</span>
+                        </ng-container>
+                        <div *ngIf="rendererForm.submitted && myForm.controls[control.name]?.invalid || myForm.controls[control.name].touched && myForm.controls[control.name]?.invalid" class="alert alert-danger">
+                            <div *ngIf="control.required">
+                                {{control.label}} is required
+                            </div>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="control.type == 'textarea'">
+                        <br><textarea [name]="control.name" rows="4" cols="50" [placeholder]="control.placeholder" [formControlName]="control.name" class="form-control" [required]="control.required"></textarea>
+                        <div *ngIf="rendererForm.submitted && myForm.controls[control.name]?.invalid || myForm.controls[control.name].touched && myForm.controls[control.name]?.invalid" class="alert alert-danger">
+                            <div *ngIf="control.required">
+                                {{control.label}} is required
+                            </div>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="control.type == 'submit'">
+                        <br><button class="submit btn btn-primary my-2 submit_btn">{{jsonFormData.payment_required?'Pay & '+control.label:control.label}}</button>
+                    </ng-container>
+                </div>
+            </ng-container>
+        </div>
+        <!-- <div class="row m-0">
+                <div class="{{control.layout}} col-md-6 col-12">
+                    <button *ngIf="control.type == 'submit'" class="submit btn btn-primary my-2">{{control.label}}</button>
+                </div>
+            </div> -->
+    </div>
+</form>
+<!-- {{jsonFormData.controls | json}} -->

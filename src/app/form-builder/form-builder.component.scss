@@ -1,0 +1,236 @@
+// .builder_section {
+//     .container {
+//         margin: 70px;
+
+//         // position: relative;
+//         .section_row {
+//             border: 1px solid lightgray;
+//             border-radius: 5px;
+
+//             // box-shadow: 1px 2px 3px 4px rgba(121, 119, 119, 0.2);
+//             .left_section {
+//                 border-right: 1px solid lightgray;
+
+//                 .button_section {
+//                     width: 60%;
+//                     margin: auto;
+
+//                     .control_section {
+//                         .button-col {
+//                             padding-top: 5px;
+//                             padding-bottom: 5px;
+//                             text-align: center;
+
+//                             p {
+//                                 background: #4051b6;
+//                                 color: white;
+//                                 box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+//                                 border: 1px solid #d7d1d1;
+//                                 border-radius: 5px;
+//                                 padding: 5px;
+//                                 width: 100%;
+//                                 transition: .3s;
+//                             }
+
+//                             p:hover {
+//                                 transition: .3s;
+//                                 background: whitesmoke;
+//                                 color: black;
+//                             }
+//                         }
+//                     }
+//                 }
+
+//                 .layout_section {
+//                     display: flex;
+//                     justify-content: space-evenly;
+//                     padding: 20px 0;
+//                 }
+//             }
+
+//             .right_section {
+//                 .field_section {
+//                     .control_section {
+//                         .button-col {
+//                             position: relative;
+
+//                             .btn_section {
+//                                 display: none;
+//                                 position: absolute;
+//                                 right: 0;
+
+//                                 i {
+//                                     cursor: pointer;
+//                                 }
+//                             }
+
+//                             &:hover {
+//                                 .btn_section {
+//                                     display: block;
+//                                 }
+//                             }
+//                         }
+
+//                         .drag_content {
+//                             padding: 5px 0;
+
+//                             p {
+//                                 background-color: #8491df;
+//                                 padding: 10px 0;
+//                                 text-align: center;
+//                             }
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+
+//         .save_form {
+//             text-align: right;
+//         }
+//     }
+// }
+
+
+.chat-content-area {
+    // margin-bottom: 30px;
+
+    .sidebar-left {
+        float: left;
+
+        .sidebar {
+            background-color: white;
+            box-shadow: 1px 5px 24px 0 rgba(68, 102, 242, 0.05);
+            padding: 20px;
+            width: 250px;
+
+            .button_section {
+                width: 75%;
+                margin: auto;
+
+                .control_section {
+                    .button-col {
+                        padding-top: 5px;
+                        padding-bottom: 5px;
+                        p {
+                            text-align: left;
+                            background: #0ec6c6;
+                            color: white;
+                            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+                            border-radius: 30px;
+                            padding: 5px 5px 5px 15px;
+                            width: 100%;
+                            transition: .3s;
+                            &:hover {
+                                border: 1px solid #d7d1d1;
+                                box-shadow: 0 4px 12px 0 rgba(8, 141, 211, .6);
+                                transition: .3s;
+                                background: whitesmoke;
+                                color: black;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .layout_section {
+                .redioDiv {
+                    width: 75%;
+                    margin-left: auto;
+                }
+            }
+            .payment_section {
+                .checkboxDiv {
+                    text-align: center;
+                    i {
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+
+    .content-right {
+        float: right;
+        width: calc(100% - 280px);
+
+        .chat-list-wrapper {
+            .chat-list {
+                background-color: white;
+                .chat-list-header {
+                    box-shadow: 1px 5px 24px 0 rgba(68, 102, 242, .05);
+                    padding: 20px;
+                    .simplebar-scrollbar {
+                        &::before {
+                            background: #aaaaaa;
+                        }
+                    }
+    
+                    .field_section {
+                        .control_section {
+                            .button-col {
+                                position: relative;
+    
+                                .btn_section {
+                                    display: none;
+                                    position: absolute;
+                                    right: 0;
+    
+                                    i {
+                                        cursor: pointer;
+                                    }
+                                }
+    
+                                &:hover {
+                                    .btn_section {
+                                        display: block;
+                                    }
+                                }
+                            }
+    
+                            .drag_content {
+                                padding: 5px 0;
+    
+                                p {
+                                    background-color: #d4ebf7;
+                                    padding: 10px 0;
+                                    text-align: center;
+                                }
+                            }
+                        }
+                    }
+    
+                }
+                .chat-list-footer {
+                    .save_form {
+                        text-align: right;
+                        background: #fafafa;
+                        .send-btn {
+                            border: none;
+                            background-color: #0ec6c6;
+                            color: white;
+                            transition: .3s;
+                            border-radius: 30px;
+                            height: 45px;
+                            padding: 1px 30px 0;
+                            box-shadow: 0 4px 12px 0 rgba(8, 141, 211, .2);
+    
+                            font: {
+                                // size: 15px;
+                                // weight: 600;
+                            }
+    
+                            &:hover {
+                                box-shadow: 0 4px 12px 0 rgba(8, 141, 211, .6);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .section_heading {
+        font-size: 1.5rem;
+    }
+}

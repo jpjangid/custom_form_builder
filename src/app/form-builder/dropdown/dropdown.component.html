@@ -1,0 +1,7 @@
+<label for="checkbox" class="mb-2" *ngIf="inputDropdownDetail?.label">{{inputDropdownDetail.label}}</label>
+<select class="form-select" aria-label="Default select example">
+    <option selected>Select Category</option>
+    <ng-container *ngFor="let item of inputDropdownDetail?.data">
+        <option value="1">{{item.label}}</option>
+    </ng-container>
+</select>
